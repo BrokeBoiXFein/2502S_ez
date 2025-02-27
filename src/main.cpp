@@ -185,23 +185,29 @@ bool durgh = false;
 
   
  int LBPresets(){
+  bool Braking = false;
+
   LB.set_brake_mode(pros::MotorBrake::hold);    
     if (master.get_digital(DIGITAL_Y)) {
+      Braking = false;
       Lift_Task.resume();
       liftPID.target_set(2500);
-      lift_wait();
+
      
     //  liftControl(-100);
     }
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
       Lift_Task.suspend();
       LB.move(127);
+      Braking = true;
     }
     else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
       Lift_Task.suspend();
       LB.move(-127);
+      Braking = true;
     } 
-    else{
+    
+    else if(Braking == true || master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0){
       LB.brake();
     }
   
