@@ -104,7 +104,7 @@ void drive_example() {
 /*chassis.pid_turn_set(45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-liftPID.target_set(-700);
+liftPID.target_set(21600);
 lift_wait();
 chassis.pid_drive_set(-20_in,60);
 chassis.pid_wait();
@@ -153,7 +153,7 @@ pros::delay(5000);*/
 /*chassis.pid_turn_set(-45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-liftPID.target_set(-700);
+liftPID.target_set(21600);
 lift_wait();
 pros::delay(2000);
 chassis.pid_drive_set(-20_in,60);
@@ -200,7 +200,7 @@ pros::delay(5000);*/
 /*chassis.pid_turn_set(45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-lift_auto(-750);
+lift_auto(21600);
 chassis.pid_drive_set(-18_in,60);
 chassis.pid_wait();
 chassis.pid_turn_set(0_deg,TURN_SPEED);
@@ -225,11 +225,12 @@ pros::delay(5000);*/
 
 //Blue Pos side ladder half awp
 
-/*pros::delay(3000);
+
 chassis.pid_turn_set(-45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-lift_auto(-750);
+lift_auto(20000);
+lift_wait();
 chassis.pid_drive_set(-18_in,60);
 chassis.pid_wait();
 chassis.pid_turn_set(0_deg,TURN_SPEED);
@@ -248,7 +249,7 @@ chassis.pid_turn_set(-110_deg,TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(30,50);
 chassis.pid_wait();
-pros::delay(5000);*/
+pros::delay(5000);
 
 //Blue Pos side no alliance
 
@@ -288,7 +289,7 @@ pros::delay(5000);*/
 
   //skills
 //THIS DROPS FIRST GOAL INTO POSITIVE
-SpinIntake(-100);
+/*SpinIntake(-110);
 pros::delay(500);
 chassis.pid_drive_set(12, 70);
 chassis.pid_wait();
@@ -435,7 +436,7 @@ chassis.pid_drive_set(-30,60);
 chassis.pid_wait();
 Clamp.retract();
 chassis.pid_drive_set(15,60);
-chassis.pid_wait();
+chassis.pid_wait();*/
 
 
 //PUT FIRST BLUE GOAL IN CORNER

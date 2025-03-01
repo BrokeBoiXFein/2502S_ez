@@ -137,7 +137,7 @@ void autonomous() {
     
 void runIntake() {
 if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-		Intake.move(-100);
+		Intake.move(-110);
 		
 	}
 else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
@@ -191,7 +191,7 @@ bool durgh = false;
     if (master.get_digital(DIGITAL_Y)) {
       Braking = false;
       Lift_Task.resume();
-      liftPID.target_set(2500);
+      liftPID.target_set(2100);
 
      
     //  liftControl(-100);

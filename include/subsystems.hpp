@@ -10,10 +10,10 @@ inline pros::Motor LB(5);
 inline pros::Rotation LBRotation(18);
 
 inline void SpinLB(int volts){
- LB.move((-0.1)*volts);
+ LB.move(-volts);
 }
 
-inline ez::PID liftPID{0.2, 0, 0, 0, "Lift"};
+inline ez::PID liftPID{0.03, 0, 0, 0, "Lift"};
 
 
 inline void lift_task() {
@@ -28,10 +28,10 @@ inline void lift_task() {
 inline pros::Task Lift_Task(lift_task);
 
 inline void liftControl(double target){
-  double kp = 0.5;
+  double kp = 0.03;
   double error = target - LBRotation.get_position();
   double velocity = kp * error;
-  LB.move(velocity);
+  LB.move(-velocity);
 }
 
 
