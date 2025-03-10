@@ -99,13 +99,18 @@ void drive_example() {
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
   // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
 
+
+  // JUST DRIVE
+  /*chassis.pid_drive_set(-15_in,70);
+  chassis.pid_wait();*/
 //BLUE SIDE 5 RING
 
-/*chassis.pid_turn_set(45_deg, TURN_SPEED);
+
+chassis.pid_turn_set(45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-liftPID.target_set(21600);
-lift_wait();
+chassis.pid_wait();
+
 chassis.pid_drive_set(-20_in,60);
 chassis.pid_wait();
 chassis.pid_turn_set(0_deg,TURN_SPEED);
@@ -116,11 +121,11 @@ Clamp.extend();
 pros::delay(100);
 chassis.pid_turn_set(-140_deg,50);
 chassis.pid_wait();
-chassis.pid_drive_set(12,60);
+chassis.pid_drive_set(11,60);
 chassis.pid_wait();
 pros::delay(100);
-SpinIntake(-100);
-chassis.pid_swing_relative_set(LEFT_SWING, 45_deg, 60);
+SpinIntake(-127);
+chassis.pid_swing_relative_set(LEFT_SWING, 50_deg, 60);
 chassis.pid_wait();
 pros::delay(100);
 chassis.pid_drive_set(11_in,60);
@@ -134,28 +139,30 @@ chassis.pid_wait();
 chassis.pid_turn_set(90_deg,TURN_SPEED);
 chassis.pid_wait();
 Raise.extend();
-chassis.pid_drive_set(25,60);
+chassis.pid_drive_set(15,60);
 chassis.pid_wait();
 Raise.retract();
 chassis.pid_drive_set(-10,40);
 chassis.pid_wait();
 SpinIntake(80);
 pros::delay(100);
-SpinIntake(-110);
-pros::delay(5000);*/
+SpinIntake(-127);
+pros::delay(5000);
 
 
 //Red SIDE 5 RING
 //colorSortTask(-90);
 //pros::delay(100000);
 //colorSortTask(0);
-
-/*chassis.pid_turn_set(-45_deg, TURN_SPEED);
+/*
+chassis.pid_turn_set(-45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-liftPID.target_set(21600);
+chassis.pid_wait();
+Lift_Task.resume();
+liftPID.target_set(20000);
 lift_wait();
-pros::delay(2000);
+Lift_Task.suspend();
 chassis.pid_drive_set(-20_in,60);
 chassis.pid_wait();
 chassis.pid_turn_set(0_deg,TURN_SPEED);
@@ -166,11 +173,11 @@ Clamp.extend();
 pros::delay(100);
 chassis.pid_turn_set(140_deg,50);
 chassis.pid_wait();
-chassis.pid_drive_set(12,60);
+chassis.pid_drive_set(11,60);
 chassis.pid_wait();
 pros::delay(100);
 SpinIntake(-100);
-chassis.pid_swing_relative_set(RIGHT_SWING, -45_deg, 60);
+chassis.pid_swing_relative_set(RIGHT_SWING, -50_deg, 60);
 chassis.pid_wait();
 pros::delay(100);
 chassis.pid_drive_set(11_in,60);
@@ -192,15 +199,18 @@ chassis.pid_wait();
 SpinIntake(80);
 pros::delay(100);
 SpinIntake(-110);
-pros::delay(5000);*/
-
+pros::delay(5000);
+*/
 
 
 //Red Pos side ladder half awp
 /*chassis.pid_turn_set(45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-lift_auto(21600);
+Lift_Task.resume();
+liftPID.target_set(20000);
+lift_wait();
+Lift_Task.suspend();
 chassis.pid_drive_set(-18_in,60);
 chassis.pid_wait();
 chassis.pid_turn_set(0_deg,TURN_SPEED);
@@ -226,11 +236,14 @@ pros::delay(5000);*/
 //Blue Pos side ladder half awp
 
 
-chassis.pid_turn_set(-45_deg, TURN_SPEED);
+/*chassis.pid_turn_set(-45_deg, TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(1, 60);
-lift_auto(20000);
+chassis.pid_wait();
+Lift_Task.resume();
+liftPID.target_set(20000);
 lift_wait();
+Lift_Task.suspend();
 chassis.pid_drive_set(-18_in,60);
 chassis.pid_wait();
 chassis.pid_turn_set(0_deg,TURN_SPEED);
@@ -249,7 +262,7 @@ chassis.pid_turn_set(-110_deg,TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(30,50);
 chassis.pid_wait();
-pros::delay(5000);
+pros::delay(5000);*/
 
 //Blue Pos side no alliance
 
@@ -270,8 +283,7 @@ chassis.pid_wait();
 pros::delay(5000);*/
 
 //Red Pos Side No alliance
-/*
-chassis.pid_drive_set(-37_in,30);
+/*chassis.pid_drive_set(-37_in,30);
 chassis.pid_wait();
 Clamp.extend();
 SpinIntake(-80);
@@ -289,7 +301,7 @@ pros::delay(5000);*/
 
   //skills
 //THIS DROPS FIRST GOAL INTO POSITIVE
-/*SpinIntake(-110);
+/*SpinIntake(-127);
 pros::delay(500);
 chassis.pid_drive_set(12, 70);
 chassis.pid_wait();
@@ -305,9 +317,9 @@ chassis.pid_drive_set(26_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(28_deg,TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(75,70,true);
+chassis.pid_drive_set(75,90,true);
 chassis.pid_wait();
-chassis.pid_drive_set(-15_in,60);
+chassis.pid_drive_set(-15_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(15_deg, TURN_SPEED);
 chassis.pid_wait();
@@ -315,18 +327,18 @@ chassis.pid_drive_set(-37_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(90_deg, TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(22_in,60);
+chassis.pid_drive_set(22_in,70);
 chassis.pid_wait();
 chassis.pid_drive_set(-2_in,40);
 chassis.pid_wait();
-SpinIntake(-90);
-chassis.pid_drive_set(-10_in,60);
+SpinIntake(-127);
+chassis.pid_drive_set(-10_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(180_deg,TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(60,70);
 chassis.pid_wait();
-chassis.pid_drive_set(-10_in,60);
+chassis.pid_drive_set(-10_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(90_deg,TURN_SPEED);
 chassis.pid_wait();
@@ -347,7 +359,7 @@ pros::delay(100);
 chassis.pid_drive_set(10,50);
 chassis.pid_wait();
 
-chassis.pid_drive_set(-73,90,true);
+chassis.pid_drive_set(-73,100,true);
 chassis.pid_wait_quick_chain();
 chassis.pid_drive_set(-15,40);
 chassis.pid_wait();
@@ -361,7 +373,7 @@ chassis.pid_turn_set(-28_deg,TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(75,70,true);
 chassis.pid_wait();
-chassis.pid_drive_set(-15_in,60);
+chassis.pid_drive_set(-15_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(-15_deg, TURN_SPEED);
 chassis.pid_wait();
@@ -369,28 +381,29 @@ chassis.pid_drive_set(-37_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(-90_deg, TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(22_in,60);
+chassis.pid_drive_set(22_in,70);
 chassis.pid_wait();
 chassis.pid_drive_set(-2_in,40);
 chassis.pid_wait();
-SpinIntake(-90);
-chassis.pid_drive_set(-10_in,60);
+SpinIntake(-127);
+chassis.pid_drive_set(-10_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(180_deg,TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(60,70);
 chassis.pid_wait();
-chassis.pid_drive_set(-10_in,60);
+chassis.pid_drive_set(-10_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(-90_deg,TURN_SPEED);
 chassis.pid_wait();
 chassis.pid_drive_set(22_in,70);
 chassis.pid_wait();
 chassis.pid_turn_set(14_deg,TURN_SPEED);
+chassis.pid_wait();
 chassis.pid_drive_set(-20,50);
 chassis.pid_wait();
 Clamp.retract();
-chassis.pid_drive_set(10,60);
+chassis.pid_drive_set(10,70);
 chassis.pid_wait();
 
 //Fill 3rd goal
@@ -409,11 +422,11 @@ chassis.pid_drive_set(-8,40);
 chassis.pid_wait();
 Clamp.extend();
 pros::delay(100);
-chassis.pid_drive_set(30,60);
+chassis.pid_drive_set(30,70);
 chassis.pid_wait();
 chassis.pid_turn_set(-135_deg,TURN_SPEED);
 chassis.pid_wait();
-SpinIntake(-100);
+SpinIntake(-110);
 chassis.pid_drive_set(33,70);
 chassis.pid_wait();
 pros::delay(100);
@@ -432,11 +445,11 @@ chassis.pid_drive_set(25,70);
 chassis.pid_wait();
 chassis.pid_turn_set(-110_deg,TURN_SPEED);
 chassis.pid_wait();
-chassis.pid_drive_set(-30,60);
+chassis.pid_drive_set(-30,70);
 chassis.pid_wait();
 Clamp.retract();
-chassis.pid_drive_set(15,60);
-chassis.pid_wait();*/
+chassis.pid_drive_set(15,70);
+chassis.pid_wait();
 
 
 //PUT FIRST BLUE GOAL IN CORNER

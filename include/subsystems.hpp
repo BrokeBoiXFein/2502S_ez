@@ -6,20 +6,28 @@
 extern Drive chassis;
 // Your motors, sensors, etc. should go here.  Below are examples
 
-inline pros::Motor LB(5);
-inline pros::Rotation LBRotation(18);
+inline pros::Motor LB(1);
+inline pros::Rotation LBRotation(2);
 
 inline void SpinLB(int volts){
- LB.move(-volts);
+ LB.move(volts);
 }
 
-inline ez::PID liftPID{0.03, 0, 0, 0, "Lift"};
+inline ez::PID liftPID{0.03, 0, 1, 0, "Lift"};
 
+
+inline void liftControl(double target){
+  double kp = 0.03;
+  double error = target - LBRotation.get_position();
+  double velocity = kp * error;
+  LB.move(velocity);
+}
 
 inline void lift_task() {
   pros::delay(2000);  // Set EZ-Template calibrate before this function starts running
   while (true) {
-    SpinLB(liftPID.compute(LBRotation.get_position()));
+    //SpinLB(liftPID.compute(LBRotation.get_position()));
+    liftControl(500);
 
     pros::delay(ez::util::DELAY_TIME);
   }
@@ -27,12 +35,7 @@ inline void lift_task() {
 
 inline pros::Task Lift_Task(lift_task);
 
-inline void liftControl(double target){
-  double kp = 0.03;
-  double error = target - LBRotation.get_position();
-  double velocity = kp * error;
-  LB.move(-velocity);
-}
+
 
 
 

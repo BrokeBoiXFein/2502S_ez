@@ -8,8 +8,9 @@
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
-pros::Motor Intake(-14);
-
+pros::Motor Intake(-13);
+// pros::Motor LB(5);
+// pros::Rotation LBRotation(18);
 
 bool EnableLB = true;
 //pneumatic
@@ -21,12 +22,25 @@ pros::adi::Pneumatics Raise(7,false);
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {-17, -20, 19},     // Left Chassis Ports (negative port will reverse it!)
-    {8, -9, 10},  // Right Chassis Ports (negative port will reverse it!)
+    {-18, -20, 19},     // Left Chassis Ports (negative port will reverse it!)
+    {9, -8, 10},  // Right Chassis Ports (negative port will reverse it!)
 
     2,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
     450);   // Wheel RPM
+
+
+// bool runningLift = true;
+// int liftMode = 0;
+// void liftTask(){
+//   while(1){
+//     if(runningLift){
+//       LB = 0.01*(liftMode - LBRotation.get_position());
+//     }
+//     pros::delay(20);
+//   }
+// }
+
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -70,7 +84,7 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
   LB.tare_position();
-  LBRotation.set_position(0);
+  LBRotation.set_position(36000);
   master.rumble(".");
 
 }
@@ -137,7 +151,7 @@ void autonomous() {
     
 void runIntake() {
 if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-		Intake.move(-110);
+		Intake.move(-118);
 		
 	}
 else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
@@ -191,8 +205,8 @@ bool durgh = false;
     if (master.get_digital(DIGITAL_Y)) {
       Braking = false;
       Lift_Task.resume();
-      liftPID.target_set(2100);
-
+      //liftPID.target_set(1100);
+      //liftControl(5000);
      
     //  liftControl(-100);
     }
