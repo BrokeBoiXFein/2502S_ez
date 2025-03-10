@@ -84,7 +84,7 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
   LB.tare_position();
-  LBRotation.set_position(36000);
+  LBRotation.set_position(0);
   master.rumble(".");
 
 }
@@ -200,12 +200,15 @@ bool durgh = false;
   
  int LBPresets(){
   bool Braking = false;
-
+ 
   LB.set_brake_mode(pros::MotorBrake::hold);    
     if (master.get_digital(DIGITAL_Y)) {
       Braking = false;
       Lift_Task.resume();
-      //liftPID.target_set(1100);
+  
+      liftPID.target_set(5000);
+
+      
       //liftControl(5000);
      
     //  liftControl(-100);
@@ -221,10 +224,13 @@ bool durgh = false;
       Braking = true;
     } 
     
-    else if(Braking == true || master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0){
+    else if((Braking = true && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0) || (Braking == true && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0) ){
       LB.brake();
     }
+
+    
   
+   
   
    // SpinLB(liftPID.compute(LB.get_position()));
 
@@ -275,7 +281,7 @@ void opcontrol() {
     // . . .
     // Put more user control code here!
     // . . .
-
+    printf("%d/n", LBRotation.get_position());
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }
