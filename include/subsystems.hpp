@@ -6,14 +6,14 @@
 extern Drive chassis;
 // Your motors, sensors, etc. should go here.  Below are examples
 
-inline pros::Motor LB(1);
-inline pros::Rotation LBRotation(18);
+inline pros::Motor LB(-1);
+inline pros::Rotation LBRotation(11);
 
 inline void SpinLB(int volts){
-  LB.move(volts);
+  LB.move(-volts);
  }
  
- inline ez::PID liftPID{0, 0, 0, 0, "Lift"};
+ inline ez::PID liftPID{0.1, 0, 0, 0, "Lift"};
  
  
  inline void lift_task() {

@@ -84,7 +84,7 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
   LB.tare_position();
-  LBRotation.set_position(0);
+  LBRotation.set_position(36000);
   master.rumble(".");
 
 }
@@ -205,9 +205,9 @@ bool durgh = false;
     if (master.get_digital(DIGITAL_Y)) {
       Braking = false;
       Lift_Task.resume();
-  
-      liftPID.target_set(5000);
-
+      liftPID.target_set(1000);
+      Braking = true;
+   
       
       //liftControl(5000);
      
@@ -224,7 +224,7 @@ bool durgh = false;
       Braking = true;
     } 
     
-    else if((Braking = true && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0) || (Braking == true && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0) ){
+    else if((Braking = true && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0) || (Braking == true && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1) == 0) || (Braking == true && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y) == 0) ){
       LB.brake();
     }
 
